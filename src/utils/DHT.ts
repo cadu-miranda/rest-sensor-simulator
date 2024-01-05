@@ -17,6 +17,8 @@ interface DHTImpl {
 }
 
 class DHT implements DHTImpl {
+  private static instance: DHT;
+
   private pin: number;
 
   private type: DHTType;
@@ -25,6 +27,14 @@ class DHT implements DHTImpl {
     this.pin = pin;
 
     this.type = type;
+  }
+
+  public static getInstance({ pin, type }: DHTProps): DHT {
+    if (!DHT.instance) {
+      DHT.instance = new DHT({ pin, type });
+    }
+
+    return DHT.instance;
   }
 
   private generateRandomNumber(min: number, max: number): number {
