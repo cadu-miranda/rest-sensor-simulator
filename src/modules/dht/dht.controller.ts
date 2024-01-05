@@ -9,7 +9,9 @@ class DHTController {
   }
 
   async handle(req: Request, res: Response): Promise<Response> {
-    const dhtData = this.dhtService.execute();
+    const { pin, type } = req.body;
+
+    const dhtData = this.dhtService.execute({ pin, type });
 
     if (!dhtData) {
       return res.status(400).json({ error: "Failed to read from DHT sensor." });

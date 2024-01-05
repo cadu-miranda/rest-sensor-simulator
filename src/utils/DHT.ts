@@ -6,7 +6,6 @@ interface DHTProps {
 }
 
 interface DHTImpl {
-  begin(): void;
   readTemperature(scale: boolean): number;
   readHumidity(): number;
   computeHeatIndex(
@@ -47,16 +46,6 @@ class DHT implements DHTImpl {
     }
 
     return Math.round(randomNumber);
-  }
-
-  public begin(): void {
-    const sensorType = this.type;
-
-    console.log(`Initiating ${sensorType} sensor...`);
-
-    setTimeout(() => {
-      console.log(`${sensorType} sensor initiated.`);
-    }, 1500);
   }
 
   public readTemperature(isFahrenheit: boolean = false): number {
@@ -133,4 +122,4 @@ class DHT implements DHTImpl {
   }
 }
 
-export { DHT };
+export { DHT, DHTType };

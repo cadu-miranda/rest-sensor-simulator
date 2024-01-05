@@ -1,3 +1,3 @@
-import dhtRoutes from "../modules/dht/dht.routes";
+import DHTRoutes from "../modules/dht/dht.routes";
 
-export { dhtRoutes };
+export default [DHTRoutes];

@@ -1,16 +1,19 @@
-import { DHT } from "../../utils/DHT";
+import { DHT, DHTType } from "../../utils/DHT";
+
+interface ReadSensorDataDTO {
+  pin: number;
+  type: DHTType;
+}
 
 class DHTService {
-  execute(): {
+  execute({ pin, type }: ReadSensorDataDTO): {
     h: number;
     t: number;
     f: number;
     hif: number;
     hic: number;
   } {
-    const dht = DHT.getInstance({ pin: 4, type: "DHT11" });
-
-    dht.begin();
+    const dht = DHT.getInstance({ pin, type });
 
     const h = dht.readHumidity();
 
@@ -23,8 +26,6 @@ class DHTService {
     const hic = dht.computeHeatIndex(t, h, false);
 
     if (isNaN(h) || isNaN(t) || isNaN(f)) {
-      console.log("Failed to read from DHT sensor!");
-
       return { h: 0, t: 0, f: 0, hif: 0, hic: 0 };
     }
 
