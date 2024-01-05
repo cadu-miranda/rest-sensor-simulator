@@ -13,10 +13,6 @@ class DHTController {
 
     const dhtData = this.dhtService.execute({ pin, type });
 
-    if (!dhtData) {
-      return res.status(400).json({ error: "Failed to read from DHT sensor." });
-    }
-
     return res.status(200).json(dhtData);
   }
 }
