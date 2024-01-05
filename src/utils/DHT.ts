@@ -7,7 +7,7 @@ interface DHTProps {
 
 interface DHTImpl {
   begin(): number;
-  readTemperature(scale: boolean): number;
+  readTemperature(isFahrenheit?: boolean): number;
   readHumidity(): number;
   computeHeatIndex(
     temperature: number,
