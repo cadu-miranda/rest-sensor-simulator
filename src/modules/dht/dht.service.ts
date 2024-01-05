@@ -15,6 +15,8 @@ class DHTService {
   } {
     const dht = DHT.getInstance({ pin, type });
 
+    dht.begin();
+
     const h = dht.readHumidity();
 
     const t = dht.readTemperature();
