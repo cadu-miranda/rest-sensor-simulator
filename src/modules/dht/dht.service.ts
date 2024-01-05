@@ -22,13 +22,13 @@ class DHTService {
 
     const f = dht.readTemperature(true);
 
-    const hif = dht.computeHeatIndex(f, h);
-
-    const hic = dht.computeHeatIndex(t, h, false);
-
     if (isNaN(h) || isNaN(t) || isNaN(f)) {
       throw new AppError("Falha ao ler os dados do sensor.");
     }
+
+    const hif = dht.computeHeatIndex(f, h);
+
+    const hic = dht.computeHeatIndex(t, h, false);
 
     return { h, t, f, hif, hic };
   }
