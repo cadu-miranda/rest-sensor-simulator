@@ -1,3 +1,4 @@
+import { AppError } from "../../errors/AppError";
 import { DHT, DHTType } from "../../utils/DHT";
 
 interface ReadSensorDataDTO {
@@ -15,8 +16,6 @@ class DHTService {
   } {
     const dht = DHT.getInstance({ pin, type });
 
-    dht.begin();
-
     const h = dht.readHumidity();
 
     const t = dht.readTemperature();
@@ -28,7 +27,7 @@ class DHTService {
     const hic = dht.computeHeatIndex(t, h, false);
 
     if (isNaN(h) || isNaN(t) || isNaN(f)) {
-      throw new Error("Falha ao ler os dados do sensor.");
+      throw new AppError("Falha ao ler os dados do sensor.");
     }
 
     return { h, t, f, hif, hic };

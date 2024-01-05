@@ -27,6 +27,8 @@ class DHT implements DHTImpl {
     this.pin = pin;
 
     this.type = type;
+
+    this.begin();
   }
 
   private generateRandomNumber(min: number, max: number): number {
